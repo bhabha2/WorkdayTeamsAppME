@@ -1,40 +1,21 @@
 let config = {
   botId: process.env.BOT_ID,
   botPassword: process.env.BOT_PASSWORD,
-  baseURL: 'https://wd2-impl-services1.workday.com/ccx/', 
-  bearerToken: 'Bearer eyJ0eXAiOiJhdCtKV1QiLCJhbGciOiJSUzUxMiJ9.eyJzdWIiOiIxZmU2ZTRiNmM2ZmUxMDAwYWI2ZWRhZDJmMGQ5MDAwMSIsImF1ZCI6Imh0dHBzOi8vd2QyLWltcGwtc2VydmljZXMxLndvcmtkYXkuY29tL2NjeC8iLCJzY29wZSI6Im9hdXRoIiwiaXNzIjoiaHR0cHM6Ly93ZDItaW1wbC1zZXJ2aWNlczEud29ya2RheS5jb20vY2N4L2FwaS92MS9taWNyb3NvZnRfZHB0NiIsImV4cCI6MTcxMDE2MjA4MCwiaWF0IjoxNzEwMTQ3NjgwLCJqdGkiOiJkbTgzZVdZemJuQmhkVzQzYkc0Mk5HMXBZbUZwY1dFd05IbzNibUY0YlhkNk5IQTBlakJ0YldWNU5HaDROMmwwYUdFemRUTmtiV0l6TlhnNWFYaDNiV000WldRd09HdGhiMlI1YzJWbE1EZG1hSFl3ZFdOdk5IQjFNSEoyYTNCNloyUjVMamM1WWpJeU5tSTBMVGN6TXprdE5EZ3pNQzA0Wm1JNExUTTRaR0l6TUdKaU9UQTBOUT09IiwiY2xpZW50X2lkIjoiTldKbU16bG1NbUl0WWpGa055MDBNakZoTFRrek5tRXRabU5tTXpWaVpEaGlOV05pIn0.qaC8Qtp2ZOLbwSefiQcAB0zvhc-3XMJO_EL7YLClj84giCDffZNTXTDjiAKojZYj4oIwmTufzoBbVNbEwQkaAi7uTxsLQLj-wEy4k5dppu_fBB2Km2XSZfDhOjxkwBfldIlP3dEu8iXLhBvhu07AxD4Pafq21fxcGqR1Y8xxMibl5ZtNdwpIpZBzfjvlCTH0KRjlHxPU-7RhjEY1_U_BNSlcs0l4GxKvGckTHukp3csGg8SJ_cb1XRuerCZtv3jFCF8JrqqFbF9gzd7mlnTZYu4uP8Ys5Vsreg11E6qkX07z7UdqTLwwnuNZ2o6-ZvoyU_oSjpyFCboMsC5NrYWOwg',
-  cookie: 'BIGipServerpool_ven01957=6ed58969755b7c3607624895d671588d; JSESSIONID=0852563FC5176307A9B6AC86943BBE54; glide_node_id_for_js=39023b18d943f4443e8ae910a9bddcad2499bee455691f66513ffe07df02a707; glide_session_store=E1E060021BE00690E1068622DD4BCB2B; glide_user_route=glide.6a5720c2ae15733b0678f7a788ffd602',
+  baseURL: '', 
+  bearerToken: '',
+  cookie: '',
 
-  REST_API_Endpoint: 'https://wd2-impl-services1.workday.com/ccx/api/v1/microsoft_dpt6',
-  token_endpoint: 'https://wd2-impl-services1.workday.com/ccx/oauth2/microsoft_dpt6/token',
-  authURL: 'https://impl.workday.com/microsoft_dpt6/authorize',
-  auth_code: 'ba0qn8ow7fyy0624uysxlr2ch',
+  REST_API_Endpoint: '',
+  token_endpoint: '',
+  authURL: '',
+  auth_code: '',
   Authorization_response_type: 'code',
-  // client_id: 'NWJmMzlmMmItYjFkNy00MjFhLTkzNmEtZmNmMzViZDhiNWNi',
-  client_id: 'NDgxYTczZTgtZDFkMi00ZmVlLTk3MzctMmMxM2MyNGViOWFk',
-  // client_secret: 'gihifstobajezgl6v381r1cqbh0t8y73azodm0cm6v2468k7xesvlt851923yp5oafb3rgj5pvv5zpknviv0x6q1x80wjdjhfin',
-  client_secret: 'n5gh9criz2bgy0sn570h3989706npa1wgwifk5jz9i6760ctjv72h42d3y4uh8ybuajg7la9xt3eagnqyubkr2c6m8arj7krkhe',
+  client_id: '',
+  client_secret: '',
   redirectURL: 'https://token.botframework.com/.auth/web/redirect',
-  access_token: "eyJ0eXAiOiJhdCtKV1QiLCJhbGciOiJSUzUxMiJ9.eyJzdWIiOiIxZmU2ZTRiNmM2ZmUxMDAwYWI2ZWRhZDJmMGQ5MDAwMSIsImF1ZCI6Imh0dHBzOi8vd2QyLWltcGwtc2VydmljZXMxLndvcmtkYXkuY29tL2NjeC8iLCJzY29wZSI6Im9hdXRoIiwiaXNzIjoiaHR0cHM6Ly93ZDItaW1wbC1zZXJ2aWNlczEud29ya2RheS5jb20vY2N4L2FwaS92MS9taWNyb3NvZnRfZHB0NiIsImV4cCI6MTcxMDE2MjA4MCwiaWF0IjoxNzEwMTQ3NjgwLCJqdGkiOiJkbTgzZVdZemJuQmhkVzQzYkc0Mk5HMXBZbUZwY1dFd05IbzNibUY0YlhkNk5IQTBlakJ0YldWNU5HaDROMmwwYUdFemRUTmtiV0l6TlhnNWFYaDNiV000WldRd09HdGhiMlI1YzJWbE1EZG1hSFl3ZFdOdk5IQjFNSEoyYTNCNloyUjVMamM1WWpJeU5tSTBMVGN6TXprdE5EZ3pNQzA0Wm1JNExUTTRaR0l6TUdKaU9UQTBOUT09IiwiY2xpZW50X2lkIjoiTldKbU16bG1NbUl0WWpGa055MDBNakZoTFRrek5tRXRabU5tTXpWaVpEaGlOV05pIn0.qaC8Qtp2ZOLbwSefiQcAB0zvhc-3XMJO_EL7YLClj84giCDffZNTXTDjiAKojZYj4oIwmTufzoBbVNbEwQkaAi7uTxsLQLj-wEy4k5dppu_fBB2Km2XSZfDhOjxkwBfldIlP3dEu8iXLhBvhu07AxD4Pafq21fxcGqR1Y8xxMibl5ZtNdwpIpZBzfjvlCTH0KRjlHxPU-7RhjEY1_U_BNSlcs0l4GxKvGckTHukp3csGg8SJ_cb1XRuerCZtv3jFCF8JrqqFbF9gzd7mlnTZYu4uP8Ys5Vsreg11E6qkX07z7UdqTLwwnuNZ2o6-ZvoyU_oSjpyFCboMsC5NrYWOwg",
+  access_token: '',
   token_type: "Bearer",
-  refresh_token: "noe40bmna6e9ydauudcyctnra32cjcxrgzdiocygs7h30alposbn8x8wx3dwmmjvyeamn0j3n5jqwkz5hh47782ffhmcsumg23x"
+  refresh_token: 
 };
 
 module.exports = config;
-
-// Client Secret
-// n5gh9criz2bgy0sn570h3989706npa1wgwifk5jz9i6760ctjv72h42d3y4uh8ybuajg7la9xt3eagnqyubkr2c6m8arj7krkhe
-
-// Workday REST API Endpoint
-// https://wd2-impl-services1.workday.com/ccx/api/v1/microsoft_dpt6
-
-// Token Endpoint
-// https://wd2-impl-services1.workday.com/ccx/oauth2/microsoft_dpt6/token
-
-// Authorization Endpoint
-// https://impl.workday.com/microsoft_dpt6/authorize
-
-// Client ID
-// NDgxYTczZTgtZDFkMi00ZmVlLTk3MzctMmMxM2MyNGViOWF
-// Client Secret
-// fy6xuozgfb1h02menfj4gs4z3l8blgiodvb8xgqhvx96h8srmkxdv8hiafypu83er4qem59907vjrue1fyp1ixogfnxe3oq9ydc

@@ -21,6 +21,7 @@ console.log('\r\nInside getLeaveBalance');
     const searchQuery = query.parameters[0].value;
     let searchValue='';
     // look for 'incident_no', 'short_description' and 'assigned_to' in query and assign the value to SearchParameter and SearchValue
+    //modify to point to your workday url
     let readQuery = 'https://wd2-impl-services1.workday.com/ccx/api/v1/microsoft_dpt6/workers?limit=10&view=TimeOffSummary&search=';
     try {
       searchName = query.parameters.find((element) => element.name === "user")?.value || '';

@@ -42,24 +42,11 @@ if (workerId.attachments){
 let readQuery = 'https://wd2-impl-services1.workday.com/ccx/api/v1/microsoft_dpt6/workers/'+workerId.id.toString()+'/directReports';
       try
       {
-      // const response2 = await axios.request(config);
-      // const response2 = await CommonFunctions.runQuery(readQuery, 'get', '', accessToken);
-      // try {
-        // config.url = query;
-        // const response = await axios.request(config);
-        // return response;
-        // console.log("\nInside runQuery",accessToken);
+
         config.method = 'get';
         config.url = readQuery;
         config.headers.Authorization = `Bearer ${accessToken}`;
-        // if (data) { config.data = data; }
-        // console.log(readQuery);
         const response2 = await axios.request(config);
-        // return response;
-      // } catch (error) {
-      //   console.log(error);
-      //   return response.send(500, "Internal Server Error");
-      // }
       const attachments = [];
       let json = response2.data;
       for (let i = 0; i < json.data.length; i++) {
@@ -129,24 +116,14 @@ let readQuery = 'https://wd2-impl-services1.workday.com/ccx/api/v1/microsoft_dpt
       for (let i = 0; i < json.data.length; i++) {
         let item = json.data[i];
         //populate the fact set with the item.descriptor and item.businessTitle values
-        // { title: 'Adam Carlton', value: 'Staff Payroll Specialist' },{ title: 'David Spiegel', value: 'Senior Payroll Specialist' }
         teamMembers.push({ title: item.descriptor, value: item.businessTitle});
       }
       const template = new ACData.Template(ACLookupCoworker);
       resultCard = template.expand({
         $root: {
-          // link:item.href,
-          // idVisibility: false,
-          // id:item.id,
           user: userName,
           businessDetailsVisible: true,
           businessTitle: businessTitle || '',
-          // primaryWorkEmail:item.primaryWorkEmail || '',
-          // primaryWorkPhone:item.primaryWorkPhone || '',
-          // primarySupervisoryOrganization:item.primarySupervisoryOrganization.descriptor || '',
-          // idVisible: false,
-          // leaveInfoVisible:false,
-          // totalHourlyBalance: item.totalHourlyBalance || 0
           teamMembers: teamMembers
         }
         });

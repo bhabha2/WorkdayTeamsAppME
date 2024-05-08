@@ -5,8 +5,7 @@ const getLeaveBalance = require("./getLeaveBalance");
 const getLookupCoworker = require("./getLookupCoworker");
 const getMyDetails = require("./getMyDetails");
 const getUserTeamInfo = require("./getUserTeamInfo");
-// const updateIncident = require("./updateIncident");
-// const authorizeUser = require("./AuthorizeUser");
+
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
