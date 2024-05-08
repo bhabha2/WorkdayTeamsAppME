@@ -1,0 +1,142 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.5",
+  "refresh": {
+      "action": {
+          "type": "Action.Execute",
+          "verb": "refresh",
+          "title": "Refresh",
+          "data": {
+              "result": "${result}"
+          }
+      }
+  },
+  "body": [
+    {
+      "type": "Container",
+      "style": "good",
+      "separator": true,
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "${message}",
+          "weight": "Bolder",
+          "size": "Medium",
+          "color": "Good"
+        }]
+    },
+      {
+          "type": "Container",
+          "separator": true,
+          "items": [
+              {
+                  "type": "ColumnSet",
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "items": [
+                              {
+                                  "type": "TextBlock",
+                                  "size": "Large",
+                                  "weight": "Bolder",
+                                  "text": "🔖 ${number}",
+                                  "wrap": true,
+                                  "style": "heading"
+                              }
+                          ],
+                          "width": 60
+                      }
+                  ]
+              }
+          ],
+          "bleed": true
+      },
+      {
+          "type": "Container",
+          "style": "emphasis",
+          "items": [
+              {
+                  "type": "TextBlock",
+                  "weight": "Bolder",
+                  "text": "**short_description**",
+                  "wrap": true,
+                  "size": "Medium",
+                  "isSubtle": false
+              },
+              {
+                  "type": "ColumnSet",
+                  "separator": true,
+                  "columns": [
+                      {
+                          "type": "Column",
+                          "width": "stretch",
+                          "items": [
+                              {
+                                  "type": "FactSet",
+                                  "spacing": "Large",
+                                  "facts": [
+                                      {
+                                          "title": "Severity",
+                                          "value": "${severity}"
+                                      },
+                                      {
+                                          "title": "Assigned to",
+                                          "value": "${assigned_to}"
+                                      }
+                                  ],
+                                  "separator": true
+                              }
+                          ]
+                      }
+                  ]
+              }
+          ]
+      },
+      {
+          "type": "Container",
+          "items": [
+              {
+                  "type": "ActionSet",
+                  "actions": [
+                      {
+                          "type": "Action.ShowCard",
+                          "title": "Take action",
+                          "card": {
+                              "type": "AdaptiveCard",
+                              "body": [
+                                  {
+                                      "type": "Input.Text",
+                                      "id": "txtStock",
+                                      "label": "Severity",
+                                      "min": 1,
+                                      "max": 7,
+                                      "errorMessage": "Invalid input, use positive number between 1-7",
+                                      "style": "Tel"
+                                  },
+                                  {
+                                    "type": "Input.Text",
+                                    "id": "txtStock",
+                                    "label": "Description",
+                                    "errorMessage": "Please enter valid text",
+                                    "style": "Tel"
+                                }
+                              ],
+                              "actions": [
+                                  {
+                                      "type": "Action.Execute",
+                                      "title": "Update Incident ✅",
+                                      "verb": "ok",
+                                      "data": {
+                                          "productId": "${productId}"
+                                      }
+                                  }
+                              ]
+                          }
+                      }
+                  ]
+              }
+          ]
+      }
+  ]
+}

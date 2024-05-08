@@ -1,0 +1,95 @@
+{
+    "type": "AdaptiveCard",
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.5",
+    "refresh": {
+        "userIds": [],
+        "action": {
+            "type": "Action.Execute",
+            "verb": "refresh",
+            "title": "Refresh",
+            "data": {
+                "id": "${id}"
+            }
+        }
+    },
+    "body": [
+        
+        {
+            "type": "TextBlock",
+            "text": "${user}",
+            "wrap": true,
+            "style": "heading",
+            "size": "large"
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "FactSet",
+                    "facts": [
+                        {
+                            "title": "Title",
+                            "value": "${businessTitle}"
+                        },
+                        {
+                            "title": "Email",
+                            "value": "${primaryWorkEmail}"
+                        },
+                        {
+                            "title": "Phone",
+                            "value": "${primaryWorkPhone}"
+                        },
+                        {
+                            "title": "Org",
+                            "value": "${primarySupervisoryOrganization}"
+                        }
+                    ]
+                }
+            ],
+            "id": "BusinessDetails",
+            "isVisible": "${businessDetailsVisible}",
+            "style": "accent"
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "id": "id",
+                    "text": "${id}",
+                    "isVisible": "${idVisible}",
+                    "wrap": true
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "id": "LeaveInfo",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "${totalHourlyBalance} hours",
+                    "wrap": true
+                }
+            ],
+            "isVisible": "${leaveInfoVisible}"
+        },
+        {
+            "type": "FactSet",
+            "facts": ["${teamMembers}"]
+        }
+    ],
+    "actions":[
+        {
+            "type": "Action.Execute",
+            "title": "Get Team Info",
+            "verb": "getTeamInfo",
+            "data": {
+                "id": "${id}",
+                "user":"${user}",
+                "businessTitle":"${businessTitle}"
+            }
+        }
+    ]
+}

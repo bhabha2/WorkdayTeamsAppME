@@ -1,0 +1,53 @@
+{
+    "type": "AdaptiveCard",
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.5",
+    "refresh": {
+        "userIds": [],
+        "action": {
+            "type": "Action.Execute",
+            "verb": "refresh",
+            "title": "Refresh",
+            "data": {
+                "productId": "${productId}"
+            }
+        }
+    },
+    "body": [
+        
+        {
+            "type": "TextBlock",
+            "text": "${user}",
+            "wrap": true,
+            "style": "heading",
+            "size": "large"
+        },
+        {
+            "type": "Container",
+            "id": "LeaveInfo",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "${timeOffType}",
+                    "wrap": true
+                },
+                {
+                    "type": "TextBlock",
+                    "text": "${reason}",
+                    "wrap": true
+                },
+                {
+                    "type": "TextBlock",
+                    "text": "${quantity}",
+                    "wrap": true
+                },
+                {
+                    "type": "TextBlock",
+                    "text": "${status}",
+                    "wrap": true
+                }
+            ],
+            "isVisible": "${leaveInfoVisible}"
+        }
+    ]
+}

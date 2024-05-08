@@ -1,0 +1,150 @@
+{
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.16",
+    "version": "1.0.2",
+    "id": "4d538743-e7ad-4d78-bd53-e65a31f0e2ba",
+    "packageName": "com.microsoft.teams.extension",
+    "developer": {
+        "name": "Teams App, Inc.",
+        "websiteUrl": "https://www.example.com",
+        "privacyUrl": "https://www.example.com/privacy",
+        "termsOfUseUrl": "https://www.example.com/termofuse"
+    },
+    "icons": {
+        "color": "color.png",
+        "outline": "outline.png"
+    },
+    "name": {
+        "short": "WDBotME",
+        "full": "Workday Helper Bot for Microsoft Teams"
+    },
+    "description": {
+        "short": "Help users with leaves and other Workday related functions",
+        "full": "Help users to understand their leave balance, apply for leave, and other Workday related functions"
+    },
+    "accentColor": "#FFFFFF",
+    "bots": [
+        {
+            "botId": "887972e9-5c9f-40f9-a2d1-7eae80c238f2",
+            "scopes": [
+                "personal",
+                "team",
+                "groupchat"
+            ],
+            "isNotificationOnly": false,
+            "supportsFiles": false
+        }
+    ],
+    "composeExtensions": [
+        {
+            "botId": "887972e9-5c9f-40f9-a2d1-7eae80c238f2",
+            "commands": [
+                {
+                    "id": "getLeaveBalance",
+                    "context": [
+                        "compose",
+                        "commandBox"
+                    ],
+                    "description": "Get leave balance or time off summary for user",
+                    "title": "Get leave balance for user",
+                    "type": "query",
+                    "parameters": [
+                        {
+                            "name": "user",
+                            "title": "Employee Name",
+                            "description": "Employee Name whose leave balance needs to be fetched",
+                            "inputType": "text"
+                        }
+                    ]
+                },
+                {
+                    "id": "getLeavePlan",
+                    "context": [
+                        "compose",
+                        "commandBox"
+                    ],
+                    "description": "Get leave plans for colleague or team member",
+                    "title": "Get leave plan for team member",
+                    "type": "query",
+                    "parameters": [
+                        {
+                            "name": "user",
+                            "title": "Employee Name",
+                            "description": "Employee Name whose leave plans needs to be fetched",
+                            "inputType": "text"
+                        }
+                    ]
+                },
+                {
+                    "id": "getLookupCoworker",
+                    "context": [
+                        "compose",
+                        "commandBox"
+                    ],
+                    "description": "Lookup a coworker in the organization",
+                    "title": "Lookup co-worker",
+                    "type": "query",
+                    "parameters": [
+                        {
+                            "name": "user",
+                            "title": "Name of Colleague",
+                            "description": "Name of the colleague to be looked up",
+                            "inputType": "text"
+                        }
+                    ]
+                },
+                {
+                    "id": "getMyDetails",
+                    "context": [
+                        "compose",
+                        "commandBox"
+                    ],
+                    "description": "Get my Details",
+                    "title": "Get my Details",
+                    "type": "query",
+                    "parameters": [
+                        {
+                            "name": "user",
+                            "title": "Name of Colleague",
+                            "description": "Name of the colleague to be looked up",
+                            "inputType": "text"
+                        }
+                    ]
+                },
+                {
+                    "id": "getUserTeamInfo",
+                    "context": [
+                        "compose",
+                        "commandBox"
+                    ],
+                    "description": "Get team information for user",
+                    "title": "Get team information for user",
+                    "type": "query",
+                    "parameters": [
+                        {
+                            "name": "user",
+                            "title": "Co-worker Name",
+                            "description": "Name of the colleague whose team information needs to be fetched",
+                            "inputType": "text"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "configurableTabs": [],
+    "staticTabs": [],
+    "permissions": [
+        "identity",
+        "messageTeamMembers"
+    ],
+    "validDomains": [
+        "token.botframework.com",
+        "*.workday.com",
+        "f8q02qzz-3978.inc1.devtunnels.ms"
+    ],
+    "webApplicationInfo": {
+        "id": "887972e9-5c9f-40f9-a2d1-7eae80c238f2",
+        "resource": "api://887972e9-5c9f-40f9-a2d1-7eae80c238f2"
+    }
+}
