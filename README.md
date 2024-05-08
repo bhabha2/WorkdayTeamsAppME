@@ -28,7 +28,7 @@ This app template is a search-based [message extension](https://docs.microsoft.c
    4. Send a message to Copilot to find an NPM package information. For example: `Find the npm package info on teamsfx-react`.
       > Note: This prompt may not always make Copilot include a response from your message extension. If it happens, try some other prompts or leave a feedback to us by thumbing down the Copilot response and leave a message tagged with [MessageExtension].
 
-**Congratulations**! You are running an application that can now search npm registries in Teams and Copilot.
+**Congratulations**! You can now search Workday information like leave balance & team information in Teams via Copilot.
 
 ![Search ME Copilot](https://github.com/OfficeDev/TeamsFx/assets/107838226/a718b206-33ed-4d3e-99af-376c1f159c2b)
 
