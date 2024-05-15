@@ -6,19 +6,17 @@
         "userIds": [],
         "action": {
             "type": "Action.Execute",
-            "verb": "individualRefresh",
+            "verb": "TeamInfoRefresh",
             "title": "Refresh",
             "data": {
-                "id": "${id}",
-                "user":"${user}"
+                "id": "${id}"
             }
         }
     },
     "body": [
         {
-        "type": "Container",
-        "items": [
-        
+            "type": "Container",
+            "items": [
         {
             "type": "TextBlock",
             "text": "${user}",
@@ -50,10 +48,11 @@
                         }
                     ]
                 }
-            ],
-            "id": "BusinessDetails",
-            "isVisible": "${businessDetailsVisible}",
-            "style": "accent"
+            ]
+        },
+        {
+            "type": "FactSet",
+            "facts": ["${teamMembers}"]
         },
         {
             "type": "Container",
@@ -62,39 +61,10 @@
                     "type": "TextBlock",
                     "id": "id",
                     "text": "${id}",
-                    "isVisible": false,
-                    "wrap": true
+                    "isVisible": false
                 }
             ]
-        },
-        {
-            "type": "Container",
-            "id": "LeaveInfo",
-            "items": [
-                {
-                    "type": "TextBlock",
-                    "text": "${totalHourlyBalance} hours",
-                    "wrap": true
-                }
-            ],
-            "isVisible": "${leaveInfoVisible}"
-        },
-        {
-            "type": "FactSet",
-            "facts": ["${teamMembers}"]
         }
     ]}
-    ],
-    "actions":[
-        {
-            "type": "Action.Execute",
-            "title": "Get Team Info",
-            "verb": "getTeamInfo",
-            "data": {
-                "id": "${id}",
-                "user":"${user}",
-                "businessTitle":"${businessTitle}"
-            }
-        }
     ]
 }
