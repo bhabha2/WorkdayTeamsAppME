@@ -2,10 +2,10 @@
 // const querystring = require("querystring");
 const getLeavePlan = require("./getLeavePlan");
 const getLeaveBalance = require("./getLeaveBalance");
-const getLookupCoworker = require("./getLookupCoworker");
+const getUserInfo = require("./getUserInfo");
 const getMyDetails = require("./getMyDetails");
 const getUserTeamInfo = require("./getUserTeamInfo");
-
+const getEmployeeDetailsById = require("./getEmployeeDetailsById");
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
@@ -197,7 +197,6 @@ class SearchApp extends TeamsActivityHandler {
   async handleTeamsMessagingExtensionQuery(context, query) {
     console.log("\r\nInside handleTeamsMessagingExtensionQuery");
   const userTokeninCache = cache.get(context.activity.from.id);
-  console.log("\r\nuserTokeninCache: " + userTokeninCache);
 
   const cloudAdapter = context.adapter;
 
@@ -262,7 +261,7 @@ class SearchApp extends TeamsActivityHandler {
     }
     else {
       cache.set(context.activity.from.id, tokenResponse.token);
-      console.log("\r\nCache Status updated in Query: " + JSON.stringify(cache.get(context.activity.from.id)));
+      console.log("\r\nCache Status updated in Query: " );
     }
   }
   else if (!tokenResponse || !tokenResponse.token) {
@@ -286,7 +285,7 @@ class SearchApp extends TeamsActivityHandler {
       },
     };
   }
-  console.log("\r\nInside handleTeamsMessagingExtensionQuery");
+  console.log("\r\nInside handleTeamsMessagingExtensionQuery: ", query.commandId );
   //authorize user
   // return searchIncident.handleTeamsMessagingExtensionQuery(context, query);
   switch (query.commandId) {
@@ -294,17 +293,20 @@ class SearchApp extends TeamsActivityHandler {
     case getLeaveBalance.COMMAND_ID:{
       return getLeaveBalance.handleTeamsMessagingExtensionQuery(context, query,tokenResponse.token);
     }
-    case getLookupCoworker.COMMAND_ID:{
-      return getLookupCoworker.handleTeamsMessagingExtensionQuery(context, query,tokenResponse.token);
+    case getUserInfo.COMMAND_ID:{
+      return getUserInfo.handleTeamsMessagingExtensionQuery(context, query,tokenResponse.token);
     }
     case getMyDetails.COMMAND_ID:{
-     return getLookupCoworker.handleTeamsMessagingExtensionQuery(context, query,tokenResponse.token);
+     return getUserInfo.handleTeamsMessagingExtensionQuery(context, query,tokenResponse.token);
     }
     case getUserTeamInfo.COMMAND_ID:{
       return getUserTeamInfo.handleTeamsMessagingExtensionQuery(context, query,tokenResponse.token);
     }
     case getLeavePlan.COMMAND_ID:{
       return getLeavePlan.handleTeamsMessagingExtensionQuery(context, query,tokenResponse.token);
+    }
+    case 'getEmployeeDetailsById':{
+      return getEmployeeDetailsById.handleTeamsMessagingExtensionQuery(context, query,tokenResponse.token);
     }
     default:
       throw new Error("NotImplemented");
@@ -371,10 +373,11 @@ class SearchApp extends TeamsActivityHandler {
       return {};
   }
 
-async onAdaptiveCardInvoke(context) {
+async onInvokeActivity(context) {
   // async onInvokeActivity(context) {
       console.log('\r\nonInvoke, ' + context.activity.name);
-     
+      let runEvents = true;
+      try {
       const valueObj = context.activity.value;
       if (valueObj.authentication) {
           const authObj = valueObj.authentication;
@@ -397,19 +400,18 @@ async onAdaptiveCardInvoke(context) {
       console.log(context.activity.name);
       const userTokeninCache = cache.get(context.activity.from.id);
       // console.log("\r\nuserTokeninCache: " + userTokeninCache);
-      try {
         if(context.activity.name==='adaptiveCard/action'){
           switch (context.activity.value.action.verb) {
-            case 'getTeamInfo': {
+            case 'getTeamInfo': case 'TeamInfoRefresh': {
               console.log('\r\ngetTeamInfo');
              return getUserTeamInfo.onInvokeActivity(context, userTokeninCache);
            
             }
             // }
-            case 'refresh': {
+            case 'refresh': case 'individualRefresh': {
               console.log('\r\nrefresh');
-              console.log('\r\nvalue.action.data: ' + JSON.stringify(context.activity.value.action.data));
-             return getUserTeamInfo.onInvokeActivity(context, userTokeninCache);
+              // console.log('\r\nvalue.action.data: ' + JSON.stringify(context.activity.value.action.data));
+             return getUserInfo.onInvokeActivity(context, userTokeninCache);
             }
             default:
               runEvents = false;
@@ -419,6 +421,7 @@ async onAdaptiveCardInvoke(context) {
             runEvents = false;
             return super.onInvokeActivity(context);
         }
+        
       } catch (err) {
         console.error(err);
         if (err.message === 'NotImplemented') {
@@ -430,7 +433,7 @@ async onAdaptiveCardInvoke(context) {
       }finally {
         if (runEvents) {
           this.defaultNextEvent(context)();
-          return { status: 200 };
+          // return { status: 200 };
         }
       }
 }
@@ -441,7 +444,7 @@ async onAdaptiveCardInvoke(context) {
           const userId = context.activity.from.id;
           const valueObj = context.activity.value;
           const tokenExchangeRequest = valueObj.authentication;
-          console.log("tokenExchangeRequest.token: " + tokenExchangeRequest.token);
+          // console.log("tokenExchangeRequest.token: " + tokenExchangeRequest.token);
 
           const userTokenClient = context.turnState.get(context.adapter.UserTokenClientKey);
 
@@ -451,7 +454,7 @@ async onAdaptiveCardInvoke(context) {
               context.activity.channelId,
               { token: tokenExchangeRequest.token });
 
-          console.log('tokenExchangeResponse: ' + JSON.stringify(tokenExchangeResponse));
+          // console.log('tokenExchangeResponse: ' + JSON.stringify(tokenExchangeResponse));
       } 
       catch (err) 
       {
@@ -464,7 +467,7 @@ async onAdaptiveCardInvoke(context) {
           return false;
       }
 
-      console.log('Exchanged token: ' + JSON.stringify(tokenExchangeResponse));
+      console.log('Exchanged token: ');
       return true;
   }
 }
